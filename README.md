@@ -2,7 +2,6 @@
 
 An interactive Formula 1 grid generator that creates dream matchups between current drivers and legendary champions. Perfect for F1 fans who love to imagine "what if" scenarios!
 
-![F1 Dream Grid Preview](preview.png)
 
 ## Features ✨
 
@@ -80,6 +79,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact 📧
 
-Your Name - [@yourusername](https://twitter.com/yourusername)
+Neha Bhatia - [@NehaBhatia0906]
 
 Project Link: [https://github.com/yourusername/f1-dream-grid](https://github.com/yourusername/f1-dream-grid) 
