@@ -1,0 +1,324 @@
+:root {
+  --f1-red: #E10600;
+  --f1-black: #15151E;
+  --f1-dark: #1F1F27;
+  --f1-light: #FFFFFF;
+  --f1-gray: #38383F;
+  --f1-accent: #FF1801;
+}
+
+body {
+  background-color: var(--f1-black);
+  color: var(--f1-light);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1616849534446-9e66e4860674?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--f1-red), transparent);
+}
+
+.app-header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(45deg, var(--f1-light), var(--f1-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.race-info {
+  background: rgba(31, 31, 39, 0.8);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--f1-gray);
+  backdrop-filter: blur(10px);
+}
+
+.race-info h2 {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--f1-light);
+}
+
+.race-info p {
+  color: var(--f1-gray);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.dream-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.grid-position {
+  background: rgba(31, 31, 39, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--f1-gray);
+  backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-areas:
+    "position initials"
+    "team team";
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.grid-position.wildcard {
+  border: 2px solid var(--f1-red);
+  box-shadow: 0 0 20px rgba(225, 6, 0, 0.3);
+}
+
+.grid-position::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.grid-position:hover::before {
+  transform: translateX(100%);
+}
+
+.grid-position:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.grid-position[style*="background-color"] {
+  background: linear-gradient(135deg, var(--f1-dark), var(--f1-gray)) !important;
+}
+
+.position {
+  grid-area: position;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--f1-red);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding-right: 1rem;
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.driver-info {
+  display: grid;
+  grid-template-areas:
+    "initials"
+    "team";
+  gap: 0.3rem;
+}
+
+.initials {
+  grid-area: initials;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--f1-light);
+  margin-left: 1rem;
+}
+
+.team {
+  grid-area: team;
+  font-size: 1.1rem;
+  color: var(--f1-light);
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+}
+
+.wildcard-label {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--f1-red);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: auto;
+}
+
+button {
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+button:hover::before {
+  transform: translateX(100%);
+}
+
+.shuffle-button {
+  background: var(--f1-red);
+  color: var(--f1-light);
+  border: none;
+}
+
+.shuffle-button:hover {
+  background: var(--f1-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(225, 6, 0, 0.4);
+}
+
+.wildcard-button {
+  background: var(--f1-dark);
+  color: var(--f1-light);
+  border: 2px solid var(--f1-red);
+}
+
+.wildcard-button:hover {
+  background: var(--f1-red);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(225, 6, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .dream-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-position {
+    padding: 1rem;
+  }
+
+  .position {
+    font-size: 2rem;
+    padding-right: 0.8rem;
+  }
+
+  .initials {
+    font-size: 2rem;
+    margin-left: 0.8rem;
+  }
+
+  .team {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dream-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .position {
+    font-size: 1.8rem;
+  }
+
+  .initials {
+    font-size: 1.8rem;
+  }
+
+  .team {
+    font-size: 0.9rem;
+  }
+} 
